@@ -1,1 +1,1 @@
-restore the dvdrental database via file path
+Restore the dvdrental database via file path.
