@@ -44,10 +44,15 @@ FROM payment;
 SELECT TO_CHAR(payment_date , 'mon/dd/YYYY')
 FROM payment;
 --Refer the postgre sql "DATA TYPE FORMATTING FUNCTIONS" part in documentation for more info
+--Link "https://www.postgresql.org/docs/12/functions-formatting.html"
 
 
+--During which month the payments are occured
+SELECT
+DISTINCT(TO_CHAR(payment_date, 'MONTH'))
+FROM payment;
 
-
+SELECT * FROM payment
 
 
 
