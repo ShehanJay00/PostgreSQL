@@ -91,3 +91,50 @@ FROM customer;
 SELECT LOWER(LEFT(first_name , 1) || last_name) || '@gmail.com'
 AS customer_email
 FROM customer;
+
+
+/*
+				SUBQUERY
+A sub query allows you to construct complex queries.
+Essentially performing a query on the results of 
+another query
+
+In this , use two SELECT statements
+
+The subquery is performed first , since it is inside the parenthesis
+
+EXISTS operator is used to test for existence of rows in a subquery.
+Typically, a subquery is passed n the EXISTS() function to check 
+if any rows are returened with the subquery.
+
+SELECT column_name
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condtion);
+*/
+SELECT title , rental_rate 
+FROM film
+WHERE rental_rate >(SELECT AVG(rental_rate) FROM film);
+--In here , the subquery in the parentheses will get executed first in order to calculate the AVG
+--Then become a part of this larger query
+
+--If your subquery returns back multiple values ,  then you need yo use IN operator on it
+SELECT film_id , title
+FROM film
+WHERE film_id IN
+(SELECT inventory.film_id
+FROM rental
+INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30')
+ORDER BY title;
+
+--Find customers who has at least one payment which greater than 11 and grab first_name andlast_name
+SELECT first_name , last_name
+FROM customer AS c
+WHERE EXISTS 
+(SELECT * FROM payment AS p
+ WHERE p.customer_id = c.customer_id
+ AND amount > 11);
+ --SubQuery checks if the customer has made at least one payment and that amount is > 11
+ 
+
