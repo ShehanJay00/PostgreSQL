@@ -137,4 +137,35 @@ WHERE EXISTS
  AND amount > 11);
  --SubQuery checks if the customer has made at least one payment and that amount is > 11
  
+ 
+ 
+
+ /*
+ 					SELF JOIN
+can be viewed as a join of two copies of the same table
+there is no special keyword for a self join , 
+its simply standard JOIN syntax with the same table in both parts
+when using a self join it is necessary to use an ALIAS for the table
+otherwise table names would be ambiguous
+
+SELECT tableA.com , tableB.col
+FROM table AS tableA
+JOIN table AS table ON
+tableA.some_col = tableB.some_col;
+
+In here both tableA and tableB means one table, just change the name using AS
+ */
+ 
+--Imagine in a company ,there are  employees and they have to send reports to other employees
+--Each employee send a report to another employee
+
+--Films that have same length
+SELECT f1.title , f2.title , f1.length
+FROM film AS f1
+INNER JOIN film AS f2 ON
+f1.film_id  != f2.film_id    --stop the matching each movies with itself
+AND f1.length = f2.length;   --but having same length
+
+
+ 
 
