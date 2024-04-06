@@ -52,7 +52,12 @@ SELECT
 DISTINCT(TO_CHAR(payment_date, 'MONTH'))
 FROM payment;
 
-SELECT * FROM payment
 
+--Select how many payments done in monday
+SELECT COUNT(*)
+FROM payment
+WHERE EXTRACT(dow FROM payment_date) = 1;
+--Date of Week
+--0 is sunday , 1 is monday
 
 
