@@ -61,3 +61,33 @@ WHERE EXTRACT(dow FROM payment_date) = 1;
 --0 is sunday , 1 is monday
 
 
+
+--Mathematical Functions
+--Add/Substract one column to another
+--Refer the documentation in postgre SQL
+SELECT ROUND(rental_rate/replacement_cost , 2)*100 AS Percentage
+FROM film;
+
+SELECT 0.1 * replacement_cost AS deposit
+FROM film;
+
+
+
+
+--String functions and Operators
+--Refer to the documentation
+SELECT first_name || last_name  --String concatination
+FROM customer;
+
+SELECT first_name || ' ' || last_name AS full_name --first_name concatinate with '' and '' concatinate with last_name
+FROM customer;
+
+SELECT UPPER(first_name || ' ' || last_name) AS full_name 
+FROM customer;
+
+SELECT first_name || last_name || '@gmail.com'
+FROM customer;
+
+SELECT LOWER(LEFT(first_name , 1) || last_name) || '@gmail.com'
+AS customer_email
+FROM customer;
