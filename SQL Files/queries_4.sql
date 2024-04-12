@@ -151,9 +151,40 @@ First check discount and check it is a Non-Null value
 If its a non null it returns the value
 If this count is NULL then it is assigned the 0 
 (the next value of the COALESCE function)
-
-
 */
+
+
+
+
+
+/* 
+				CAST
+Convert one datatype to another
+It must be reasonable to convert data
+for example '5' (string) to an Integer will work
+'Five' to an integer will not work
+
+Two ways to do cast
+01. Syntax for CAST function
+	SELECT CAST('5' AS INTIGER
+
+02. PostgreSQL CAST operator(only available in postgre sql engines)
+	SELECT '5'::INTEGER
+	
+SELECT CAST(date ad TIMESTAMP)
+FROM table
+*/
+
+SELECT CAST('5'AS INTEGER) AS new_int;
+--SELECT CAST('five'AS INTEGER) AS new_int;
+SELECT '10'::INTEGER;
+
+SELECT CHAR_LENGTH(CAST (inventory_id AS VARCHAR))
+FROM rental;
+--See the documentation for String Functions
+
+
+
 
 
 
